@@ -1,0 +1,18 @@
+{
+    "name": "logistic/exceptionhandling",
+    "description": "test",
+    "require": {
+        "yajra/laravel-datatables-oracle": "^9.7"
+    },
+    "authors": [
+        {
+            "name": "Avni Raiyani",
+            "email": "avni.raiyani@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Logistic\\Exceptionhandling\\": "src/"
+        }
+    }
+}
