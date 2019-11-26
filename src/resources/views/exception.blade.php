@@ -12,26 +12,36 @@
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
       <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
-      <title>Contact Us</title>
+      <title>Exception Logs</title>
 </head>
     <body>
-        <h3>Exception Logs</h3>
-        <table class="table table-bordered data-table">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Name</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
-</body>
+        <div class="container">
+            <h3>Exception Logs</h3>
+            <div class="row">
+                <table class="table table-bordered data-table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Created Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+     </div>
+    </body>
 <script type="text/javascript">
     $(document).ready(function() {
+
+        function formatStr (str) {
+            return str.replace(/\w\S*/g, function(txt) {
+                return txt.charAt(0).toUpperCase() + txt.substr(1);
+            }).replace(/\_/g, " ");
+        }
+
         var oTable = $('.data-table').DataTable({
-            "dom": '<"row" <"col-sm-4"l> <"col-sm-4"r> <"col-sm-4"f>> <"row"  <"col-sm-12"t>> <"row" <"col-sm-5"i> <"col-sm-7"p>>',
             processing: true,
             serverSide: true,
             responsive: true,
@@ -42,8 +52,23 @@
                 }
             },
             columns: [
-                { data: 'DT_RowIndex', searchable: false, orderable:false, width: 20 },
-                { data: 'exception', name: 'exception', width: 130},
+                { data: 'id', name:'id' },
+                {
+                    data:  null,
+                    name: 'exception',
+                    render:function(o){
+                        var type = typeof o.exception;
+                        var str = o.exception;
+                        if (type=="object") {
+                            str = "";
+                            for (const [key, value] of Object.entries(o.exception)) {
+                                str += " <p><b>"+formatStr(key)+" : </b> "+value+"</p>"
+                            }
+                        }
+                        return str;
+                    }
+                },
+                { data: 'created_at', name: 'created_at', width: 130},
             ],
     });
 

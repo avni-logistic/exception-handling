@@ -19,7 +19,7 @@
         }
         public static function exception($test)
         {
-            ExceptionLog::create(['exception' => $test]);
+            ExceptionLog::create(['exception' => json_encode($test)]);
         }
 
 

@@ -5,4 +5,8 @@ class ExceptionLog extends Model
 {
     protected $guarded = [];
     protected $table = 'exception_logs';
+
+    public function getExceptionAttribute($value) {
+        return json_decode($value);
+    }
 }
