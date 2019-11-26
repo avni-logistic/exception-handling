@@ -7,9 +7,9 @@ class ExceptionHandlingServiceProvider extends ServiceProvider {
 
     public function boot()
     {
-        $this->app->register(\Yajra\DataTables\DataTablesServiceProvider::class);
-        $loader = AliasLoader::getInstance();
-        $loader->alias('DataTables', '\Yajra\DataTables\Facades');
+        // $this->app->register(\Yajra\DataTables\DataTablesServiceProvider::class);
+        // $loader = AliasLoader::getInstance();
+        // $loader->alias('DataTables', '\Yajra\DataTables\Facades');
 
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
         $this->loadViewsFrom(__DIR__.'/resources/views', 'exceptionhandling');
